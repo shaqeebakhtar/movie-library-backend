@@ -1,13 +1,23 @@
 import { Request, Response } from "express";
 import { addMovieSchema } from "../validators/add-movie";
 import Movie from "../models/movie";
-import { sequelize } from "../lib/db";
 
 class MovieController {
   async getMovies(req: Request, res: Response) {
     const moviesList = await Movie.findAll();
 
     return res.status(200).json(moviesList);
+  }
+
+  async getMovieById(req: Request, res: Response) {
+    const { movieId } = req.params;
+    const movie = await Movie.findOne({
+      where: {
+        id: movieId,
+      },
+    });
+
+    return res.status(200).json(movie);
   }
 
   async addMovie(req: Request, res: Response) {
