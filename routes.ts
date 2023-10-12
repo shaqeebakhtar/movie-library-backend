@@ -1,11 +1,12 @@
-import { Request, Response, Router } from "express";
+import { Router } from "express";
+import movieController from "./controllers/movie-controller";
 
 export const router = Router();
 
-router.get("/movies", async (req: Request, res: Response) => {});
+router.get("/movies", movieController.getMovies);
 
-router.post("/movies", async (req: Request, res: Response) => {});
+router.post("/movies", movieController.addMovie);
 
-router.put("/movies/:movieId", async (req: Request, res: Response) => {});
+router.put("/movies/:movieId", movieController.updateMovieById);
 
-router.delete("/movies/:movieId", async (req: Request, res: Response) => {});
+router.delete("/movies/:movieId", movieController.deleteMovieById);

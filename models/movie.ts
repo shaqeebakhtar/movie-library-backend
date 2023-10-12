@@ -1,9 +1,13 @@
 import { DataTypes } from "sequelize";
 import { sequelize } from "../lib/db";
 
-export const Movie = sequelize.define("Movie", {
+const Movie = sequelize.define("Movie", {
   movieName: DataTypes.STRING,
-  duration: DataTypes.DECIMAL(3, 2),
+  duration: DataTypes.DECIMAL(13, 12),
   durationFormat: DataTypes.STRING,
-  ratings: DataTypes.DECIMAL(2, 2),
+  ratings: DataTypes.DECIMAL(3, 1),
 });
+
+export default Movie;
+
+sequelize.sync();

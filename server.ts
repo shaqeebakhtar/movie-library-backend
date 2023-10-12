@@ -1,11 +1,13 @@
 import express, { Express } from "express";
 import { router } from "./routes";
 import { PORT } from "./config";
-import { connectDB, sequelize } from "./lib/db";
+import { connectDB } from "./lib/db";
 
 const app: Express = express();
 const port = PORT || 5000;
 
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use("/api", router);
 
 connectDB();
