@@ -2,7 +2,7 @@ import { Sequelize } from "sequelize";
 import { DATABASE, DB_PASS, DB_USER } from "../config";
 
 export const sequelize = new Sequelize(DATABASE, DB_USER, DB_PASS, {
-  host: "172.18.0.1",
+  host: "localhost",
   dialect: "mysql",
   port: 3306,
 });
