@@ -4,9 +4,14 @@ import Movie from "../models/movie";
 
 class MovieController {
   async getMovies(req: Request, res: Response) {
-    const moviesList = await Movie.findAll();
+    const page = req.query.page as string;
+    const { count, rows: moviesList } = await Movie.findAndCountAll({
+      limit: 10,
+      order: [["createdAt", "desc"]],
+      offset: page ? parseInt(page) * 10 : 0,
+    });
 
-    return res.status(200).json(moviesList);
+    return res.status(200).json({ moviesList, count });
   }
 
   async getMovieById(req: Request, res: Response) {
